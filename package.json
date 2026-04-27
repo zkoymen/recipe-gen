@@ -1,0 +1,14 @@
+{
+  "name": "recipejoy-generator",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Proxy-ready AI recipe generator prototype.",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node tests/smoke.mjs"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.52.0"
+  },
+  "devDependencies": {}
+}

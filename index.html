@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RecipeJoy - AI Recipe Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="shell nav">
+        <a class="brand" href="#top" aria-label="RecipeJoy home">
+          <span class="brand-mark">RJ</span>
+          <span>RecipeJoy</span>
+        </a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="#generator">Generate</a>
+          <a href="#results">Results</a>
+          <a href="#settings">Proxy</a>
+        </nav>
+        <button class="icon-button" id="themeButton" type="button" title="Toggle theme">
+          <span class="material-symbols-outlined">light_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero shell">
+        <div class="hero-copy">
+          <span class="eyebrow">Kitchen magic, proxy-ready</span>
+          <h1>Turn pantry odds and ends into dinner plans.</h1>
+          <p>Enter ingredients, keep filters compact, and send the prompt to your local OAuth-backed ChatGPT CLI proxy when you are ready.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#generator">
+              <span class="material-symbols-outlined">auto_fix_high</span>
+              Start
+            </a>
+            <button class="button secondary" id="demoButton" type="button">
+              <span class="material-symbols-outlined">restaurant_menu</span>
+              Load demo
+            </button>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="plate">
+            <div class="bowl"></div>
+            <span class="food f1"></span>
+            <span class="food f2"></span>
+            <span class="food f3"></span>
+            <span class="food f4"></span>
+            <span class="steam s1"></span>
+            <span class="steam s2"></span>
+            <span class="steam s3"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="shell app-grid" id="generator">
+        <form class="panel generator" id="recipeForm">
+          <div class="section-head">
+            <div>
+              <span class="kicker">Pantry</span>
+              <h2>What do you have?</h2>
+            </div>
+            <button class="ghost" id="clearButton" type="button">Clear</button>
+          </div>
+
+          <label class="field">
+            <span>Ingredients</span>
+            <textarea id="ingredients" rows="5" placeholder="tomatoes, garlic, pasta, basil, parmesan"></textarea>
+          </label>
+
+          <div class="quick-add" aria-label="Quick ingredient chips">
+            <button type="button">chicken</button>
+            <button type="button">rice</button>
+            <button type="button">eggs</button>
+            <button type="button">spinach</button>
+            <button type="button">yogurt</button>
+            <button type="button">mushrooms</button>
+          </div>
+
+          <div class="filters">
+            <label class="field compact">
+              <span>Diet</span>
+              <select id="diet">
+                <option>Any</option>
+                <option>Vegetarian</option>
+                <option>Vegan</option>
+                <option>High protein</option>
+                <option>Gluten free</option>
+                <option>Keto</option>
+              </select>
+            </label>
+            <label class="field compact">
+              <span>Time</span>
+              <select id="time">
+                <option>Any</option>
+                <option>15 minutes</option>
+                <option>30 minutes</option>
+                <option>45 minutes</option>
+                <option>Slow cook</option>
+              </select>
+            </label>
+            <label class="field compact">
+              <span>Skill</span>
+              <select id="difficulty">
+                <option>Easy</option>
+                <option>Medium</option>
+                <option>Ambitious</option>
+              </select>
+            </label>
+            <label class="field compact">
+              <span>Serves</span>
+              <input id="servings" min="1" max="10" type="number" value="2" />
+            </label>
+          </div>
+
+          <label class="field">
+            <span>Extra notes</span>
+            <input id="notes" type="text" placeholder="no oven, make it spicy, use one pan..." />
+          </label>
+
+          <button class="button primary generate" type="submit">
+            <span class="material-symbols-outlined">auto_awesome</span>
+            Generate recipes
+          </button>
+        </form>
+
+        <aside class="panel settings" id="settings">
+          <div class="section-head">
+            <div>
+              <span class="kicker">Backend</span>
+              <h2>CLI proxy</h2>
+            </div>
+            <span class="status" id="proxyStatus">local fallback</span>
+          </div>
+
+          <label class="field">
+            <span>Proxy endpoint</span>
+            <input id="endpoint" type="url" placeholder="http://localhost:8787/recipe" />
+          </label>
+          <label class="field">
+            <span>Model</span>
+            <input id="model" type="text" placeholder="chatgpt-5.5" />
+          </label>
+          <label class="toggle">
+            <input id="useProxy" type="checkbox" />
+            <span>Use backend AI proxy</span>
+          </label>
+
+          <div class="contract">
+            <h3>Expected JSON contract</h3>
+            <pre>{
+  "model": "chatgpt-5.5",
+  "ingredients": ["tomatoes", "pasta"],
+  "filters": {
+    "diet": "Any",
+    "time": "30 minutes",
+    "difficulty": "Easy",
+    "servings": 2
+  },
+  "notes": "one pan"
+}</pre>
+            <p>Response can be <code>{ "recipes": [...] }</code> or a raw array. Streaming can be added once your proxy shape is known.</p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="shell results-wrap" id="results">
+        <div class="section-head">
+          <div>
+            <span class="kicker">Generated</span>
+            <h2>Recipe ideas</h2>
+          </div>
+          <button class="ghost" id="copyButton" type="button">
+            <span class="material-symbols-outlined">content_copy</span>
+            Copy JSON
+          </button>
+        </div>
+
+        <div class="loading" id="loading" hidden>
+          <span class="material-symbols-outlined spin">progress_activity</span>
+          Asking the kitchen brain...
+        </div>
+
+        <div class="empty" id="emptyState">
+          <span class="material-symbols-outlined">skillet</span>
+          <h3>No recipes yet</h3>
+          <p>Add ingredients and generate. If the proxy is off or unavailable, the app creates useful mock recipes locally.</p>
+        </div>
+
+        <div class="recipes" id="recipes"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="shell">
+        <span>RecipeJoy prototype</span>
+        <span>OAuth and model access stay behind your local proxy.</span>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RecipeJoy - Your Culinary Results</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Be+Vietnam+Pro:wght@400;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bubbly-shadow {
+            box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.05);
+        }
+        .recipe-card-hover:hover {
+            transform: translateY(-4px) scale(1.02);
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#e1e1f5",
+                    "surface-container-high": "#ebe8e2",
+                    "on-primary-fixed": "#002117",
+                    "surface-container-low": "#f7f3ed",
+                    "secondary-fixed": "#ffdcc5",
+                    "secondary-fixed-dim": "#eabea0",
+                    "on-secondary-fixed-variant": "#5f402a",
+                    "on-tertiary-container": "#67697a",
+                    "primary-fixed": "#8ff6d0",
+                    "tertiary-fixed-dim": "#c5c5d8",
+                    "surface-container-highest": "#e6e2dc",
+                    "on-tertiary-fixed-variant": "#444655",
+                    "primary-fixed-dim": "#73d9b5",
+                    "primary": "#006c52",
+                    "inverse-primary": "#73d9b5",
+                    "surface-tint": "#006c52",
+                    "on-primary-fixed-variant": "#00513d",
+                    "on-background": "#1c1c18",
+                    "tertiary-container": "#eaeafe",
+                    "surface-bright": "#fdf9f3",
+                    "on-secondary": "#ffffff",
+                    "inverse-surface": "#31302d",
+                    "on-secondary-fixed": "#2d1604",
+                    "on-primary-container": "#00785c",
+                    "inverse-on-surface": "#f4f0ea",
+                    "background": "#fdf9f3",
+                    "surface": "#fdf9f3",
+                    "on-error-container": "#93000a",
+                    "on-error": "#ffffff",
+                    "primary-container": "#98ffd9",
+                    "on-surface-variant": "#3e4944",
+                    "outline": "#6e7a74",
+                    "on-tertiary-fixed": "#191b29",
+                    "on-secondary-container": "#7a5840",
+                    "secondary": "#79573f",
+                    "surface-dim": "#dddad4",
+                    "error-container": "#ffdad6",
+                    "surface-variant": "#e6e2dc",
+                    "on-surface": "#1c1c18",
+                    "error": "#ba1a1a",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary": "#5c5d6e",
+                    "on-primary": "#ffffff",
+                    "secondary-container": "#ffd1b3",
+                    "outline-variant": "#bdc9c2",
+                    "surface-container": "#f1ede7",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "24px",
+                    "stack-lg": "48px",
+                    "container-max": "1200px",
+                    "margin-mobile": "16px",
+                    "stack-sm": "12px",
+                    "gutter": "24px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "body-md": ["Be Vietnam Pro"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "label-md": ["Be Vietnam Pro"],
+                    "body-lg": ["Be Vietnam Pro"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "1.1", "fontWeight": "800"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-orange-50/80 dark:bg-slate-950/80 backdrop-blur-md docked full-width top-0 sticky z-50 border-b-2 border-emerald-100/50 dark:border-emerald-900/20 shadow-[0_10px_40px_-15px_rgba(152,255,217,0.3)]">
+<div class="max-w-[1200px] mx-auto flex justify-between items-center px-8 py-4">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black text-emerald-600 dark:text-emerald-400 italic">RecipeJoy</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="font-['Plus_Jakarta_Sans'] font-semibold tracking-tight text-slate-500 dark:text-slate-400 hover:text-emerald-500 pb-1 hover:scale-105 hover:bg-emerald-50/50 dark:hover:bg-emerald-900/20 transition-all duration-300" href="#">Generate</a>
+<a class="font-['Plus_Jakarta_Sans'] font-semibold tracking-tight text-emerald-700 dark:text-emerald-300 border-b-4 border-emerald-400 rounded-t-sm pb-1 hover:scale-105 hover:bg-emerald-50/50 dark:hover:bg-emerald-900/20 transition-all duration-300" href="#">Explore</a>
+<a class="font-['Plus_Jakarta_Sans'] font-semibold tracking-tight text-slate-500 dark:text-slate-400 hover:text-emerald-500 pb-1 hover:scale-105 hover:bg-emerald-50/50 dark:hover:bg-emerald-900/20 transition-all duration-300" href="#">My Recipes</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center bg-surface-container-low rounded-full px-4 py-2 border border-outline-variant/30">
+<span class="material-symbols-outlined text-outline" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-label-md w-48" placeholder="Search kitchen ideas..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined p-2 text-slate-600 hover:bg-emerald-50 rounded-full cursor-pointer transition-colors" data-icon="favorite">favorite</span>
+<span class="material-symbols-outlined p-2 text-slate-600 hover:bg-emerald-50 rounded-full cursor-pointer transition-colors" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[1200px] mx-auto px-8 pt-12 pb-24">
+<!-- Header Section -->
+<div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="max-w-2xl">
+<h1 class="font-display-lg text-display-lg text-primary mb-4">Magic on the Menu! ✨</h1>
+<p class="font-body-lg text-body-lg text-secondary">We've whisked together some delicious ideas using your ingredients. Which one will be today's masterpiece?</p>
+</div>
+</div>
+<!-- Active Ingredients Bar -->
+<div class="mb-12 p-6 bg-secondary-container rounded-[32px] border-2 border-dashed border-secondary/20">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-secondary" data-icon="restaurant_menu">restaurant_menu</span>
+<span class="font-headline-md text-secondary">Your Kitchen Stash:</span>
+</div>
+<div class="flex flex-wrap gap-3">
+<div class="flex items-center gap-2 px-4 py-2 bg-surface-container-lowest rounded-full bubbly-shadow border border-secondary/10 group hover:bg-error-container transition-colors cursor-pointer">
+<span class="text-label-md text-secondary group-hover:text-error">Avocado</span>
+<span class="material-symbols-outlined text-sm text-secondary/50 group-hover:text-error" data-icon="close">close</span>
+</div>
+<div class="flex items-center gap-2 px-4 py-2 bg-surface-container-lowest rounded-full bubbly-shadow border border-secondary/10 group hover:bg-error-container transition-colors cursor-pointer">
+<span class="text-label-md text-secondary group-hover:text-error">Salmon</span>
+<span class="material-symbols-outlined text-sm text-secondary/50 group-hover:text-error" data-icon="close">close</span>
+</div>
+<div class="flex items-center gap-2 px-4 py-2 bg-surface-container-lowest rounded-full bubbly-shadow border border-secondary/10 group hover:bg-error-container transition-colors cursor-pointer">
+<span class="text-label-md text-secondary group-hover:text-error">Lime</span>
+<span class="material-symbols-outlined text-sm text-secondary/50 group-hover:text-error" data-icon="close">close</span>
+</div>
+<div class="flex items-center gap-2 px-4 py-2 bg-surface-container-lowest rounded-full bubbly-shadow border border-secondary/10 group hover:bg-error-container transition-colors cursor-pointer">
+<span class="text-label-md text-secondary group-hover:text-error">Quinoa</span>
+<span class="material-symbols-outlined text-sm text-secondary/50 group-hover:text-error" data-icon="close">close</span>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary-container text-primary rounded-full hover:scale-105 transition-transform font-label-md">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                    Add Ingredient
+                </button>
+</div>
+</div>
+<!-- Recipe Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Card 1 -->
+<div class="group bg-surface-container-low rounded-[32px] overflow-hidden recipe-card-hover transition-all duration-300 border border-primary/5 shadow-sm">
+<div class="relative h-64 overflow-hidden">
+<img alt="Fresh harvest salad" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A vibrant salad bowl with sliced avocado, quinoa, and grilled salmon, bright daylight, high contrast, top-down view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVJYH-qjv1E5Z6PqZbKEoXdadCDilRQP4duPk_hNuXcxAcv2-abifs8wD79SOX3vZfggrqkxK1agQ-4b4dI9FZcaJG7nqd-NQR7ci3ZQM1ynatfdWStWa-fMPOSWLZcl49t79NnUAhtFQz_UycuAFSRKqDOsIM5CcQTsZYNcHrP-fGot5iNny4BHFbO5jotVJnX20mJ9GqfV6_DAR-Un_5Pwve52MqILXr2CrouW6woaIkZcLDfuo_S_X88BEa8KcNQpqoncnbSS7i"/>
+<div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full p-2 text-primary shadow-sm hover:scale-110 transition-transform cursor-pointer">
+<span class="material-symbols-outlined" data-icon="favorite" style="font-variation-settings: 'FILL' 0;">favorite</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex gap-2 mb-3">
+<span class="px-3 py-1 bg-primary-container text-primary rounded-full text-[12px] font-bold uppercase tracking-wider">Healthy</span>
+<span class="px-3 py-1 bg-tertiary-container text-tertiary rounded-full text-[12px] font-bold uppercase tracking-wider">Quick</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4">Sunshine Power Bowl</h3>
+<div class="flex items-center justify-between border-t border-outline-variant/30 pt-4">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-sm" data-icon="schedule">schedule</span>
+<span class="text-label-md">15 min</span>
+</div>
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-sm" data-icon="restaurant">restaurant</span>
+<span class="text-label-md">Easy peasy</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group bg-surface-container-low rounded-[32px] overflow-hidden recipe-card-hover transition-all duration-300 border border-primary/5 shadow-sm">
+<div class="relative h-64 overflow-hidden">
+<img alt="Gourmet salmon dish" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Gently seared salmon fillet with a zesty lime glaze, resting on a bed of fluffy quinoa, soft morning light, culinary photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXFKolPAS9gp7ieX2591isCCoBoBcTpIX2bY9vwebt3TnAuF0Vb9D4zdE4Wg7a8CxKiOuhApE1JILNYI7rAZ8N2EsFm_IBpYFCAUHm9GFzdxCpnVySy0l2G-Wr22Ht8_3W5et_p-Ead6uCEFtqWsK0EnwG3bi3ISm8GLxSGWJF1c4cDapQlcgjWM59z6CZZbCJ6r0Q8VO-1Zq2NePxNjh3PfKsW64hGm2mIWYQB6g8yY2UiA6oTIWoezZbKLYuOShJOi9-YGfnksN6"/>
+<div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full p-2 text-primary shadow-sm hover:scale-110 transition-transform cursor-pointer">
+<span class="material-symbols-outlined" data-icon="favorite" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex gap-2 mb-3">
+<span class="px-3 py-1 bg-secondary-container text-secondary rounded-full text-[12px] font-bold uppercase tracking-wider">Gourmet</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4">Zesty Lime Salmon Skewers</h3>
+<div class="flex items-center justify-between border-t border-outline-variant/30 pt-4">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-sm" data-icon="schedule">schedule</span>
+<span class="text-label-md">25 min</span>
+</div>
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-sm" data-icon="restaurant">restaurant</span>
+<span class="text-label-md">Intermediate</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group bg-surface-container-low rounded-[32px] overflow-hidden recipe-card-hover transition-all duration-300 border border-primary/5 shadow-sm">
+<div class="relative h-64 overflow-hidden">
+<img alt="Creamy avocado mash" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Close up of artisanal toast topped with mashed avocado and quinoa pearls, scattered herbs, bright and cheerful kitchen setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVbK6If8kScJCxNyNCcNnM_X9wkAc0SVph-zxuteFceT7Spv2A1Jq9Ezq8OfpPeQXVKJaRmXR0u1O31tCQBvTBZYjx_mQVf_SWv3mGMf1t1UK33UtSr6iwGmXmO23gdeg7X-z-5NwFb4Rw8ZbUR4vdXKSvTy-4o8Vi05coIyIA1atL7NIyM8UdF8iSCZxgm_Nrte6QP9TV39RU2OIAPQc9oB4CPQIC-3i8aBWd8pzpHoIJkKm9mexb0P8uvSfd5arInR_6H-F4QkcF"/>
+<div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full p-2 text-primary shadow-sm hover:scale-110 transition-transform cursor-pointer">
+<span class="material-symbols-outlined" data-icon="favorite" style="font-variation-settings: 'FILL' 0;">favorite</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex gap-2 mb-3">
+<span class="px-3 py-1 bg-primary-container text-primary rounded-full text-[12px] font-bold uppercase tracking-wider">Vegan Friendly</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4">Avocado &amp; Quinoa Toasties</h3>
+<div class="flex items-center justify-between border-t border-outline-variant/30 pt-4">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-sm" data-icon="schedule">schedule</span>
+<span class="text-label-md">10 min</span>
+</div>
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-sm" data-icon="restaurant">restaurant</span>
+<span class="text-label-md">Super Easy</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="group bg-surface-container-low rounded-[32px] overflow-hidden recipe-card-hover transition-all duration-300 border border-primary/5 shadow-sm">
+<div class="relative h-64 overflow-hidden">
+<img alt="Salmon salad" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Layered salad jar with salmon, avocado chunks, and quinoa, colorful vegetables, studio lighting, crisp focus" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByHND47vvkCU39Ye8s-6kKDEVlxFieWWbU5hOvYWAt4jSNF-Ul7ZUv8q4TSn-D2ipU1Hfiu52wHoWSqevSQTn4wRz5x8RLeEKQimnXqoQTUDjHA7u14kLi_eJFpEz2pKYm6RQPOu5vUvLU2pTph3BT2Wqq4a6ApcBW916qFx0Gw1-Ufnl1NW_Ff24VDbOADY9xN7Q4uQaLV0MDrUubbWwYVJMdnecG9pPbuIVx9c9RTxkAYztIg8pqJWYHFEp4TTbRLWol1s9xknOc"/>
+<div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full p-2 text-primary shadow-sm hover:scale-110 transition-transform cursor-pointer">
+<span class="material-symbols-outlined" data-icon="favorite" style="font-variation-settings: 'FILL' 0;">favorite</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex gap-2 mb-3">
+<span class="px-3 py-1 bg-tertiary-container text-tertiary rounded-full text-[12px] font-bold uppercase tracking-wider">Lunch Box</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4">Rainbow Mason Jar Salad</h3>
+<div class="flex items-center justify-between border-t border-outline-variant/30 pt-4">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-sm" data-icon="schedule">schedule</span>
+<span class="text-label-md">20 min</span>
+</div>
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-sm" data-icon="restaurant">restaurant</span>
+<span class="text-label-md">Easy peasy</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bento Styled "More" Slot -->
+<div class="lg:col-span-2 bg-primary-container/30 rounded-[48px] border-4 border-dashed border-primary/20 flex flex-col items-center justify-center p-12 text-center group transition-colors hover:bg-primary-container/40">
+<div class="w-20 h-20 bg-primary-container rounded-full flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-4xl" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-primary mb-4">Hungry for more?</h3>
+<p class="font-body-lg text-body-lg text-on-primary-container mb-8 max-w-md">We can whip up another batch of culinary surprises with just one click.</p>
+<button class="bg-primary text-on-primary px-10 py-4 rounded-full font-headline-md text-lg shadow-[0_4px_0_0_#00513d] hover:translate-y-[2px] hover:shadow-[0_2px_0_0_#00513d] active:translate-y-[4px] active:shadow-none transition-all">
+                    Generate More Ideas
+                </button>
+</div>
+</div>
+<!-- Floating Action Button -->
+<div class="fixed bottom-8 right-8 z-40">
+<button class="w-16 h-16 bg-secondary text-on-secondary rounded-full flex items-center justify-center shadow-xl hover:scale-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-3xl" data-icon="edit">edit</span>
+</button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-emerald-50 dark:bg-slate-900 w-full rounded-t-[48px] mt-12">
+<div class="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center px-12 py-10 gap-6">
+<div class="flex flex-col items-center md:items-start gap-2">
+<span class="font-bold text-emerald-700 text-xl font-['Plus_Jakarta_Sans']">RecipeJoy</span>
+<p class="font-['Plus_Jakarta_Sans'] text-sm text-slate-600 dark:text-slate-400">© 2024 RecipeJoy. Stirred with love and a dash of magic.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-['Plus_Jakarta_Sans'] text-sm text-slate-600 dark:text-slate-400 hover:text-emerald-500 transition-colors" href="#">Privacy Policy</a>
+<a class="font-['Plus_Jakarta_Sans'] text-sm text-slate-600 dark:text-slate-400 hover:text-emerald-500 transition-colors" href="#">Cooking Tips</a>
+<a class="font-['Plus_Jakarta_Sans'] text-sm text-slate-600 dark:text-slate-400 hover:text-emerald-500 transition-colors" href="#">Contact Us</a>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-emerald-600 cursor-pointer hover:scale-110 transition-transform" data-icon="potted_plant">potted_plant</span>
+<span class="material-symbols-outlined text-emerald-600 cursor-pointer hover:scale-110 transition-transform" data-icon="egg_alt">egg_alt</span>
+</div>
+</div>
+</footer>
+</body></html>

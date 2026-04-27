@@ -1,0 +1,11 @@
+node_modules/
+*.log
+*.err
+*.out
+recipejoy-server.err.txt
+recipejoy-server.out.txt
+.env
+.env.*
+!.env.example
+Thumbs.db
+.DS_Store

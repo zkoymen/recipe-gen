@@ -29,12 +29,6 @@ Default model:
 chatgpt-5.5
 ```
 
-The proxy API key is read server-side from:
-
-```text
-<local-machine-path>\config\config.yaml
-```
-
 You can override settings with:
 
 ```powershell

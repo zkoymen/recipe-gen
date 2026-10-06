@@ -5,7 +5,7 @@ const path = require("node:path");
 const root = __dirname;
 const port = Number(process.env.PORT || 3000);
 const proxyBaseUrl = process.env.RECIPE_PROXY_BASE_URL || "http://127.0.0.1:8317";
-const proxyConfigPath = process.env.RECIPE_PROXY_CONFIG || "./proxy-config.yaml";
+const proxyConfigPath = process.env.RECIPE_PROXY_CONFIG || "";
 const proxyApiKey = process.env.RECIPE_PROXY_API_KEY || readFirstApiKey(proxyConfigPath);
 
 const mime = {
